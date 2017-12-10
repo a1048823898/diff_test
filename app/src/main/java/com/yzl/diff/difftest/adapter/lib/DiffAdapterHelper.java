@@ -97,10 +97,9 @@ public class DiffAdapterHelper<T> {
      *
      * @param listData 列表数据
      */
-    void setListData(List<T> listData) {
+    void setListData(final List<T> listData) {
         List<T> oldData = mListData;
 
-        mBaseAdapter.setRealListData(listData);
         this.mListData = listData;
         setPagedCallback();
 
@@ -114,6 +113,7 @@ public class DiffAdapterHelper<T> {
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
+                        mBaseAdapter.setRealListData(listData);
                         diffResult.dispatchUpdatesTo(mBaseAdapter);
                     }
                 });

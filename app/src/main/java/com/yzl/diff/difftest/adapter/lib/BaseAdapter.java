@@ -40,12 +40,6 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseViewHolder
         }
     }
 
-    public static <T> List<T> getConvertList(List<T> listData) {
-        PagedList<T> list = new PagedList<>();
-        list.addAll(listData);
-        return list;
-    }
-
     public final void setListData(List<T> listData) {
         if (mAdapterHelper != null) {
             mAdapterHelper.setListData(listData);
@@ -80,5 +74,27 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseViewHolder
 
     public void onDestroy() {
         mAdapterHelper.onDestroy();
+    }
+
+    /**
+     * 获取pagedList.
+     *
+     * @param listData 其他集合数据源.
+     * @param <T>      对应数据类型
+     * @return pagedList
+     */
+    public static <T> List<T> getConvertList(List<T> listData) {
+        PagedList<T> list = new PagedList<>();
+        list.addAll(listData);
+        return list;
+    }
+
+    /**
+     * @param <T> 对应数据类型
+     * @return pagedList
+     */
+    public static <T> List<T> getConvertList() {
+        PagedList<T> list = new PagedList<>();
+        return list;
     }
 }
